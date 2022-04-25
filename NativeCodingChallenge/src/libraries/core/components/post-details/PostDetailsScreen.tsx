@@ -5,29 +5,29 @@ import { postService } from '../../services/post.service';
 import PostItemDetails from './views/PostItemDetails';
 
 
-const PostDetails = (props: { postId: string; navigation:any }) => {
+const PostDetails = ({route, navigation}) => {
     const[postDetails, setPostDetails] = useState<Post[]>()
-
+    const {postId} = route.params
     useEffect(()=>{        
-        console.log(props.postId)
+        getDetailsList();
     },[])
 
     const getDetailsList = async  () =>{
-       const data =  await postService.getPost(props.postId)
+       const data =  await postService.getPost(postId)
         .then((res)=>{
-            console.log(res)
             return res?.result
         })
         setPostDetails(data)
-        console.log(postDetails)
     }
     return (
         <View>
             <View>
-            <Button onPress={()=>props.navigation.goBack()} title={'GoBack'} ></Button>
+            <Button onPress={()=>navigation.goBack()} title={'GoBack'} ></Button>
             </View>
             <ScrollView>
-                <PostItemDetails></PostItemDetails>
+            {postDetails?.map((post:any, index:number)=>(
+                <PostItemDetails post={post} key={index}/>
+            ))}
             </ScrollView>
         </View>
 

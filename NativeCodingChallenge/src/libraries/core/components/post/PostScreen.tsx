@@ -22,7 +22,6 @@ const[posts, setPosts] = useState<Post[]>()
             return res?.result
         })
         setPosts(data)
-        console.log(posts)
     }
         return (
             <ScrollView>
