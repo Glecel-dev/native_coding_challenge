@@ -11,7 +11,7 @@ const PostItem = (props:{post: Post, navigation:any} ) => {
         <TouchableOpacity style={styles.itemTouchable} onPress={()=> props.navigation.navigate('PostDetails', {postId:postId})}>
             <Text>{props.post.user.username}</Text>
             <Text>{props.post.user.counts?.followedBy!} followers</Text>
-            <Image style={styles.userImage} source={{uri:props.post.user.username.profilePicUrl}}/>
+            <Image style={styles.userImage} source={{uri:props.post.user?.profilePicUrl!}}/>
             <Text>Likes: {props.post.counts.likes}</Text>
             <Text>Comments: {props.post.counts.comments}</Text>
             <Text>Posted At: {Moment(props.post.postedAt).format('DD MM YYYY hh:mm:ss')}</Text>

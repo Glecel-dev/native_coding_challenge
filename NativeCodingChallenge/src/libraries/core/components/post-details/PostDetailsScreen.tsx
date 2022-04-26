@@ -6,7 +6,7 @@ import PostItemDetails from './views/PostItemDetails';
 
 
 const PostDetails = ({route, navigation}) => {
-    const[postDetails, setPostDetails] = useState<Post[]>()
+    const[postDetails, setPostDetails] = useState<any>()
     const {postId} = route.params
     useEffect(()=>{        
         getDetailsList();
@@ -25,9 +25,7 @@ const PostDetails = ({route, navigation}) => {
             <Button onPress={()=>navigation.goBack()} title={'GoBack'} ></Button>
             </View>
             <ScrollView>
-            {postDetails?.map((post:any, index:number)=>(
-                <PostItemDetails post={post} key={index}/>
-            ))}
+                <PostItemDetails post={postDetails} navigation={navigation}/>
             </ScrollView>
         </View>
 

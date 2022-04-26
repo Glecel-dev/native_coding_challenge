@@ -4,10 +4,10 @@
 export interface Post {
     _id: string;
     user: {
-      username: {
-        profilePicUrl: string;
-      };
+      username: string,
+      profilePicUrl: string;
       counts: {
+        likes: any;
         followedBy: number;
       };
     };
